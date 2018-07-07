@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Listagem de contatos</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" media="screen">
+</head>
+<body>
+    <div class="container">
+        <h1>Listagem de Contatos</h1>
+        <a class="btn btn-primary" style="margin-bottom: 10px" href="/contato/novo">Cadastrar</a>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <th:block th:each="contato : ${contatos}">
+                <tr>
+                    <td th:text="${contato.nome}">José Lucas Alves da Silva</td>
+                    <td th:text="${contato.telefone}">(81) 987697795</td>
+                    <td th:text="${contato.email}">lukasalvespod1@gmail.com</td>
+                    <td th:text="${contato.categoria.descricao}">Família</td>
+                    <td>
+                        <a th:href="@{'/contato/' + ${contato.id} + '/editar'}" >Editar</a>
+                        <a th:href="@{'/contato/' + ${contato.id} + '/excluir'}" 
+                           th:onclick="'return confirm(\'Deseja excluir esse contato?\')'">Excluir</a>
+                    </td>
+                </tr>
+            </th:block>
+              
+            </tbody>
+        </table>
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

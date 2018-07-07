@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Cadastrar contatos</title>
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" media="screen">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Cadastrar Contatos</h1>
+            <form th:object="${contato}" th:action="@{/contato/salvar}" method="post">
+                
+                <input th:field="*{id}" type="hidden" id="id">               
+                
+                <div class="from-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="nome">Nome</label>
+                        <input th:field="*{nome}" type="text" class="form-control" id="nome" placeholder="Nome">
+                    </div>
+                </div>
+
+                <div class="from-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="telefone">Telefone</label>
+                        <input th:field="*{telefone}" type="text" class="form-control" id="telefone" placeholder="Telefone">
+                    </div>
+                </div>
+
+                <div class="from-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="email">Email</label>
+                        <input th:field="*{email}" type="text" class="form-control" id="email" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="from-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="categoria">Categoria</label>
+                        <select th:field="*{categoria.id}" type="text" class="chosen-select form-control" id="categoria" data-placeholder="Categoria">
+                            <option th:each="categoria : ${categorias}" th:value="${categoria.id}" 
+                                    th:text="${categoria.descricao}"></option>
+                        </select>    
+                    </div>
+                </div>
+                <a href="/contato/listar" class="btn">Voltar</a>
+                <button class="btn btn-success" type="submit">Salvar</button>
+            </form>
+        </div>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>
